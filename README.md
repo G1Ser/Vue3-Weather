@@ -27,4 +27,4 @@
 ### 1.3.项目内容
 1.Home界面：实现本地天气的查看，城市数据的检索，对本地数据的查看、管理。<br>
 2.Search界面：天气系统的查看。<br>
-![Weather项目](https://github.com/G1Ser/VUE-DouBan-Movie-Clone/blob/main/GIF/%E8%BD%AE%E6%92%AD.gif "Weather项目")
+![Weather项目](https://github.com/G1Ser/Vue3-Weather/blob/main/Image/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA.gif "Weather项目")

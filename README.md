@@ -59,6 +59,5 @@ route.push(`/weather/${adcode}?search=${city}`)
 watch([() => route.params.adecode, () => route.query.search],([newAdcode, newCity]) => {
     adcode.value = newAdcode;
     city.value = newCity;
-    key.value = WeatherStore.key;
 }, { immediate: true });
 ```

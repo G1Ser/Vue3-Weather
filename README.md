@@ -141,3 +141,4 @@ function renderChart(data) {
 </script>
 ```
 这样CommonChart.vue只需监听传进来的props参数获取天气预报数据，对图表进行渲染了。
+## 3.项目链接

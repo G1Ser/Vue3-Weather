@@ -52,3 +52,13 @@ const router = createRouter({
 
 export default router
 ```
+```
+//每当点击查看和搜索的时候，将adcode和city传入参数中
+route.push(`/weather/${adcode}?search=${city}`)
+//Search.vue进行接收
+watch([() => route.params.adecode, () => route.query.search],([newAdcode, newCity]) => {
+    adcode.value = newAdcode;
+    city.value = newCity;
+    key.value = WeatherStore.key;
+}, { immediate: true });
+```

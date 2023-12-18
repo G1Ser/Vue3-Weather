@@ -24,3 +24,5 @@
 接口地址：https://restapi.amap.com/v3/weather/weatherInfo?parameters<br>
 请求参数：参数1:key 高德地图KEY 必填 /参数2:city 城市adcode编码 必填 / 参数3:extensions 可选base：返回实况天气 可选all:返回预报天气<br>
 请求示例：https://restapi.amap.com/v3/weather/weatherInfo?city=<城市编码>&key=<你的key>&extensions=<'base' or 'all'>
+### 1.3.项目内容
+1.Home界面：实现本地天气的查看，城市数据的检索，对本地数据的管理。

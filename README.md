@@ -61,3 +61,82 @@ watch([() => route.params.adecode, () => route.query.search],([newAdcode, newCit
     city.value = newCity;
 }, { immediate: true });
 ```
+其中Home.vue和Search.vue都存在一个天气预报图表，本次项目基于Vue-Echarts进行绘制，根据第三个接口获取出预报天气，通过设置图表的option来进行绘制，本次将图表区域设置成公共部件CommonChart.vue
+```
+<template>
+    <div class="weatherInfo">
+        <div class="forecasts">
+            <div class="weather" v-for="list in WeatherStore.WeatherLists" :key="list.date">
+                <span>{{ list.week }}</span>
+                <span>{{ list.date }}</span>
+                <span>{{ list.weather }}</span>
+                <span>风力 {{ list.power }}级</span>
+            </div>
+        </div>
+        <div class="chart">
+            <v-chart :option="option"></v-chart>
+        </div>
+    </div>
+</template>
+<script setup>
+const props = defineProps({
+    city: String,
+    adcode: String
+});
+function renderChart(data) {
+    option.value = {
+        xAxis: {
+            type: 'category',
+            data: data.date,
+            axisTick: {
+                alignWithLabel: true
+            }
+        },
+        yAxis: {
+            type: 'value',
+            interval: 0
+        },
+        grid: {
+            left: 0,
+            top: 0,
+            right: 0,
+            bottom: 0
+        },
+        series: [
+            {
+                name: '白天温度',
+                type: 'line',
+                data: data.daytemp,
+                smooth: true,
+                label: {
+                    show: true,
+                    position: 'bottom', // 标签位置
+                    formatter: function (params) {
+                        return `白${params.value}℃`;
+                    },
+                    backgroundColor: 'transparent',
+                    color: '#FFF',
+                    offset: [-25, 2]
+                }
+            },
+            {
+                name: '夜间温度',
+                type: 'line',
+                data: data.nighttemp,
+                smooth: true,
+                label: {
+                    show: true,
+                    position: 'top', // 标签位置
+                    formatter: function (params) {
+                        return `晚${params.value}℃`;
+                    },
+                    backgroundColor: 'transparent',
+                    color: '#FFF',
+                    offset: [25, 2]
+                }
+            }
+        ]
+    }
+}
+</script>
+```

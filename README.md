@@ -28,3 +28,27 @@
 1.Home界面：实现本地天气的查看，城市数据的检索，对本地数据的查看、管理。<br>
 2.Search界面：天气系统的查看。<br>
 ![Weather项目](https://github.com/G1Ser/Vue3-Weather/blob/main/Image/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA.gif "Weather项目")
+## 2.项目部署
+Weather项目可分为两个部位，一个公共的TopHeader.vue，一个主界面，主界面主要是路由界面实现的，一个静态路由Home Page、一个动态路由Search Page.
+```
+//路由设置
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from '@/views/Home.vue'
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: Home
+    },
+    {
+      path: '/weather/:adecode',
+      name: 'weather',
+      component: () => import('@/views/Search.vue')
+    }
+  ]
+})
+
+export default router
+```

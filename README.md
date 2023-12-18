@@ -61,7 +61,7 @@ watch([() => route.params.adecode, () => route.query.search],([newAdcode, newCit
     city.value = newCity;
 }, { immediate: true });
 ```
-其中Home.vue和Search.vue都存在一个天气预报图表，本次项目基于Vue-Echarts进行绘制，根据第三个接口获取出预报天气，通过设置图表的option来进行绘制，本次将图表区域设置成公共部件CommonChart.vue
+其中Home.vue和Search.vue都存在一个天气预报图表，本次项目基于Vue-Echarts进行绘制，根据第三个接口获取出预报天气，通过设置图表的option来进行绘制，本次将图表区域设置成公共部件CommonChart.vue,将接口数据使用Pinia进行保存。
 ```
 <template>
     <div class="weatherInfo">

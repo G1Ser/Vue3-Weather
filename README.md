@@ -23,4 +23,4 @@
 3.通过adcode查询城市天气<br>
 接口地址：https://restapi.amap.com/v3/weather/weatherInfo?parameters<br>
 请求参数：参数1:key 高德地图KEY 必填 /参数2:city 城市adcode编码 必填 / 参数3:extensions 可选base：返回实况天气 可选all:返回预报天气<br>
-请求示例：https://restapi.amap.com/v3/weather/weatherInfo?city=<adcode>&key=<你的key>&extensions=<'base' or 'all'>
+请求示例：https://restapi.amap.com/v3/weather/weatherInfo?city=<城市编码>&key=<你的key>&extensions=<'base' or 'all'>

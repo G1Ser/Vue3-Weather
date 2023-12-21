@@ -140,7 +140,77 @@ function renderChart(data) {
 }
 </script>
 ```
-这样CommonChart.vue只需监听传进来的props参数获取天气预报数据，对图表进行渲染了。
-由于接口获取的数据不满足需求，我们需要在pinia中对接口数据进行处理
+这样CommonChart.vue只需监听传进来的props参数获取天气预报数据，对图表进行渲染了。<br>
+由于接口获取的数据不满足需求，我们需要在pinia中对接口数据进行处理。
+```
+  const Weather = ref({
+    weather: '',
+    temperature: '',
+    winddirection: '',
+    windpower: ''
+  })
+  const WeatherLists = ref(null)
+  const WeatherInfo = ref({
+    date: [],
+    daytemp: [],
+    nighttemp: []
+  })
+  const getWeather = async (city, key, extensions) => {
+    const res = await axios.get(`https://restapi.amap.com/v3/weather/weatherInfo?city=${city}&key=${key}&extensions=${extensions}`)
+    if (extensions === 'base') {
+      Weather.value = {
+        weather: res.data.lives[0].weather,
+        temperature: res.data.lives[0].temperature,
+        winddirection: res.data.lives[0].winddirection,
+        windpower: res.data.lives[0].windpower
+      }
+    }
+    if (extensions === 'all') {
+      const forecasts = res.data.forecasts[0].casts
+      WeatherLists.value = formatcasts(forecasts)
+      getChartData(forecasts)
+    }
+  }
+  function formatcasts(casts) {
+    const today = new Date();
+    const tomorrow = new Date();
+    const currentHour = today.getHours()
+    tomorrow.setDate(today.getDate() + 1);
+    const weekDays = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
+    casts.forEach(cast => {
+      //格式化week
+      const castDate = new Date(cast.date);
+      if (castDate.toDateString() === today.toDateString()) {
+        cast.week = "今天";
+      } else if (castDate.toDateString() === tomorrow.toDateString()) {
+        cast.week = "明天";
+      } else {
+        cast.week = weekDays[castDate.getDay()];
+      }
+      //格式化date
+      const date = cast.date.split('-');
+      cast.date = date[1] + '-' + date[2];
+      //格式化weather和power
+      if (currentHour >= 8 && currentHour < 18) {
+        cast.weather = cast.dayweather;
+        cast.power = cast.daypower;
+      } else {
+        cast.weather = cast.nightweather;
+        cast.power = cast.nightpower;
+      }
+    })
+    return casts
+  }
+  function getChartData(casts) {
+    WeatherInfo.value.date = [];
+    WeatherInfo.value.daytemp = [];
+    WeatherInfo.value.nighttemp = [];
+    casts.forEach(cast => {
+      WeatherInfo.value.date.push(cast.date)
+      WeatherInfo.value.daytemp.push(cast.daytemp)
+      WeatherInfo.value.nighttemp.push(cast.nighttemp)
+    })
+  }
+```
 ## 3.项目链接
 该项目已经部署线上[weather](https://weather-1322830973.cos-website.ap-beijing.myqcloud.com )

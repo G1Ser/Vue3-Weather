@@ -27,7 +27,9 @@
 ### 1.3.项目内容
 1.Home界面：实现本地天气的查看，城市数据的检索，对本地数据的查看、管理。<br>
 2.Search界面：天气系统的查看。<br>
-![Weather项目](https://github.com/G1Ser/Vue3-Weather/blob/main/Image/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA.gif "Weather项目")
+<p align="center">
+  ![Weather项目](https://github.com/G1Ser/Vue3-Weather/blob/main/Image/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA.gif "Weather项目")
+</p>
 ## 2.项目部署
 Weather项目可分为两个部位，一个公共的TopHeader.vue，一个主界面，主界面主要是路由界面实现的，一个静态路由Home Page、一个动态路由Search Page.
 ```

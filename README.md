@@ -141,5 +141,6 @@ function renderChart(data) {
 </script>
 ```
 这样CommonChart.vue只需监听传进来的props参数获取天气预报数据，对图表进行渲染了。
+由于接口获取的数据不满足需求，我们需要在pinia中对接口数据进行处理
 ## 3.项目链接
 该项目已经部署线上[weather](https://weather-1322830973.cos-website.ap-beijing.myqcloud.com )

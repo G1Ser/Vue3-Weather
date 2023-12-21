@@ -8,7 +8,7 @@
 | 状态管理 |    Pinia   |
 | 脚手架   |    Vite    |
 | 路由     | vue-router |
-| 图标     | vue-echarts |
+| 图表绘制     | vue-echarts |
 | 网络请求 |    axios   |
 | 本次存储 | Localstorage |
 ### 1.2.接口说明
